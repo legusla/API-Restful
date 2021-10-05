@@ -15,21 +15,21 @@ productosRouter.get('/', async (req, res) => {
 })
 
 productosRouter.get('/:id', async (req, res) => {
-    const productoId = req.params.id;
+    //const productoId = req.params.id;
     const producto = req.body;
     console.log(req.params.id)
     console.log(req.body)
-    const productoActualizado = await productosContenedor.getById(productoId,producto);
+    const idProducto = await productosContenedor.getById(producto);
 
-    if (!productoActualizado) {
+    if (!idProducto) {
         res.send({
             message: 'operación incorrecta',
-            data: productoActualizado
+            data: idProducto
         });
     } else {
         res.send({
             message: 'operación exitosa',
-            data: productoActualizado
+            data: idProducto
         });
     }
 });
@@ -67,11 +67,20 @@ productosRouter.put('/:id', async (req, res) => {
 });
 
 productosRouter.delete('/:id', async (req, res) => {
-    const deleteID = await productosContenedor.deleteById();
-    res.send({
-        message: 'Se borro exitosamente',
-        data: deleteID
+    const id = req.params.id;
+    const deleteID = await productosContenedor.deleteById(id);
+    if (!deleteID){
+        res.send({
+        message: 'No se pudo borrar',
+        data: deleteID      
     });
+    } else {
+        res.send({
+            message: 'Se borro exitosamente',
+            data: deleteID      
+        });  
+    }
+    console.log(deleteID);
 })
 
 module.exports = productosRouter;
