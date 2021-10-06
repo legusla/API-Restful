@@ -65,7 +65,7 @@ class Contenedor {
         try {
             const contenido = await fs.promises.readFile(`./${this.file}`);
             const listaDeProducto = JSON.parse(contenido);
-            const nuevaLista = listaDeProducto.filter(producto => producto.id !== id);
+            const nuevaLista = listaDeProducto.filter(producto => producto.id !== parseInt(id));
             const lista = JSON.stringify(nuevaLista);
             const listaP = await fs.promises.writeFile(`./${this.file}`, lista);
             
