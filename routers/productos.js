@@ -15,11 +15,9 @@ productosRouter.get('/', async (req, res) => {
 })
 
 productosRouter.get('/:id', async (req, res) => {
-    //const productoId = req.params.id;
+    const productoId = req.params.id;
     const producto = req.body;
-    console.log(req.params.id)
-    console.log(req.body)
-    const idProducto = await productosContenedor.getById(producto);
+    const idProducto = await productosContenedor.getById(productoId, producto);
 
     if (!idProducto) {
         res.send({

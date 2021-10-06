@@ -36,7 +36,7 @@ class Contenedor {
             const contenido = await fs.promises.readFile(`./${this.file}`);
             const listaDeProducto = JSON.parse(contenido);
             const prod = listaDeProducto.find(producto => {
-                return producto.id === parseInt(id)
+                return producto.id === parseInt(id);
             })
             if(prod){
                 id !== id;
