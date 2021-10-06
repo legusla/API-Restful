@@ -21,7 +21,7 @@ productosRouter.get('/:id', async (req, res) => {
 
     if (!idProducto) {
         res.send({
-            message: 'operación incorrecta',
+            message: 'producto no encontrado',
             data: idProducto
         });
     } else {
