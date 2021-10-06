@@ -66,8 +66,10 @@ productosRouter.put('/:id', async (req, res) => {
 
 productosRouter.delete('/:id', async (req, res) => {
     const id = req.params.id;
-    const deleteID = await productosContenedor.deleteById(id);
-    if (!deleteID){
+    const producto = req.body;
+    const deleteID = await productosContenedor.deleteById(id,  producto);
+
+    if (!deleteID) {
         res.send({
         message: 'No se pudo borrar',
         data: deleteID      
